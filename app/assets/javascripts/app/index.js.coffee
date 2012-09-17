@@ -15,9 +15,8 @@ class App extends Spine.Controller
   constructor: ->
     super
     
-    # Initialize controllers:
     @append(@groups = new App.Groups)
-    
-    Spine.Route.setup()    
+
+    Spine.Route.setup(history: true)
 
 window.App = App
