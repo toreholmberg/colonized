@@ -1,0 +1,18 @@
+<h1>New Post</h1>
+
+<a data-type="back">Back</a>
+
+<form>
+  
+  <label>
+    <span>Content</span>
+    <input 
+      type="text" name="content" 
+      value="<%= @content %>" required
+ autofocus>
+    <br />
+  </label>
+  
+  <button>Create</button>
+
+</form>

@@ -1,0 +1,6 @@
+<h1>Show User</h1>
+
+<a data-type="edit">Edit</a> <a data-type="back">Back</a>
+
+<p>Email: <%= @email %></p>
+<p>Name: <%= @name %></p>
