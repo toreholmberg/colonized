@@ -1,22 +1,10 @@
-class App.Main extends Spine.Controller
-  className: 'main'
+class App.Main extends Spine.Stack
 
-  constructor: ->
-    super
-    
-    @sidebar = new App.Sidebar
-    @users = new App.Users
-    @groups = new App.Groups
-    @posts = new App.Posts
+  controllers:
+    groups: App.Groups
 
-    @routes
-      '/users': (params) ->
-        @users.active(params)
-      '/groups': (params) ->
-        @groups.active(params)
-      '/posts': (params) ->
-        @posts.active(params)
+  routes:
+    '/groups': 'groups'
 
-    @append @sidebar
-
-
+  default: 'groups'
+  className: 'stack main'

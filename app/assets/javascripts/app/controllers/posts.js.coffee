@@ -1,6 +1,21 @@
 $ = jQuery.sub()
 Post = App.Post
 
+class App.Posts extends Spine.Controller
+
+  constructor: ->
+    super
+    Post.bind 'refresh change', @render
+    Post.fetch()
+    
+  render: =>
+    posts = Post.all()
+    @html @view('posts/index')(posts: posts)
+
+###
+$ = jQuery.sub()
+Post = App.Post
+
 $.fn.item = ->
   elementID   = $(@).data('id')
   elementID or= $(@).parents('[data-id]').data('id')
@@ -120,3 +135,4 @@ class App.Posts extends Spine.Stack
     
   default: 'index'
   className: 'stack posts'
+###

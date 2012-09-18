@@ -1,6 +1,23 @@
 $ = jQuery.sub()
 Group = App.Group
 
+class App.Groups extends Spine.Controller
+  className: 'groups'
+
+  constructor: ->
+    super
+    Group.bind 'refresh change', @render
+    Group.fetch()
+
+  render: =>
+    groups = Group.all()
+    @html @view('groups/index')(groups: groups)
+
+
+###
+$ = jQuery.sub()
+Group = App.Group
+
 $.fn.item = ->
   elementID   = $(@).data('id')
   elementID or= $(@).parents('[data-id]').data('id')
@@ -13,7 +30,8 @@ class New extends Spine.Controller
     
   constructor: ->
     super
-    @active @render
+  
+  @active @render
     
   render: ->
     @html @view('groups/new')
@@ -120,3 +138,4 @@ class App.Groups extends Spine.Stack
     
   default: 'index'
   className: 'stack groups'
+  ###

@@ -14,8 +14,11 @@
 class App extends Spine.Controller
   constructor: ->
     super
+
+    @sidebar = new App.Sidebar
     @main = new App.Main
-    @append @main
+    @append @sidebar, @main
+
     Spine.Route.setup()
 
 window.App = App
