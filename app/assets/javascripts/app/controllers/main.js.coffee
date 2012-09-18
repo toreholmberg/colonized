@@ -1,3 +1,5 @@
+#= require_tree .
+
 class App.Main extends Spine.Stack
 
   controllers:
@@ -8,3 +10,6 @@ class App.Main extends Spine.Stack
 
   default: 'groups'
   className: 'stack main'
+
+  constructor: ->
+    super

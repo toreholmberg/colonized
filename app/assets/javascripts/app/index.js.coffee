@@ -15,6 +15,8 @@ class App extends Spine.Controller
   constructor: ->
     super
 
+    App.User.fetch()
+
     @sidebar = new App.Sidebar
     @main = new App.Main
     @append @sidebar, @main

@@ -6,12 +6,14 @@ class App.Groups extends Spine.Controller
 
   constructor: ->
     super
-    Group.bind 'refresh change', @render
-    Group.fetch()
 
-  render: =>
-    groups = Group.all()
-    @html @view('groups/index')(groups: groups)
+    @routes
+      "/group/:id": (params) =>
+        @render params.id
+
+  render: (id) =>
+    group = Group.find(id)
+    @html @view('groups/show')(group)
 
 
 ###

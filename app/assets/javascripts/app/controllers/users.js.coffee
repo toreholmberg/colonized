@@ -1,6 +1,22 @@
 $ = jQuery.sub()
 User = App.User
 
+class App.Users extends Spine.Controller
+  className: 'users'
+
+  constructor: ->
+    super
+    User.bind 'refresh change', @render
+    User.fetch()
+    
+  render: =>
+    users = User.all()
+    @html @view('users/index')(users: users)
+
+###
+$ = jQuery.sub()
+User = App.User
+
 $.fn.item = ->
   elementID   = $(@).data('id')
   elementID or= $(@).parents('[data-id]').data('id')
@@ -120,3 +136,4 @@ class App.Users extends Spine.Stack
     
   default: 'index'
   className: 'stack users'
+###

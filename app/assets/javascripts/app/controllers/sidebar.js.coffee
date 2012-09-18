@@ -1,29 +1,25 @@
 $ = jQuery.sub()
+Group = App.Group
 
 class App.Sidebar extends Spine.Controller
   id: 'sidebar'
   className: 'sidebar'
 
-  # elements:
-  #   '.items': items
-  # 
   events:
-    'click ul li.users': 'usersClickHandler'
-    'click ul li.groups': 'groupsClickHandler'
-    'click ul li.posts': 'postsClickHandler'
+    'click ul.groups li': 'groupClickHandler'
 
   constructor: ->
     super
+    Group.bind 'refresh change', @render
+    Group.fetch()
     @render()
 
-  render: ->
-    @html @view('sidebar/show')()
+  render: =>
+    groups = Group.all()
+    @html @view('sidebar')(groups: groups)
 
-  usersClickHandler: ->
-    @navigate '/users'
+  homeClickHandler: ->
+    @navigate '/'
 
-  groupsClickHandler: ->
-    @navigate '/groups'
-
-  postsClickHandler: ->
-    @navigate '/posts'
+  groupClickHandler: (e) ->
+    @navigate '/group', $(e.target).data 'id'
