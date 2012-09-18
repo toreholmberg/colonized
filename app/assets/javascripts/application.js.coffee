@@ -16,4 +16,4 @@
 //= require_tree .
 
 $ ->
-  new App({el: $("#app")})
+  new App({el: $('body')})
