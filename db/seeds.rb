@@ -5,3 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+User.delete_all
+Group.delete_all
+Post.delete_all
+
+User.create({name: "Torino", email: 'test@test.com'})
+
+10.times do |i|
+  group = Group.create({title: "Group #{i}", user: User.first})
+  100.times do |j|
+    Post.create({content: "Lorem ipsum dolor sit amet. #{i}-#{j}", group: group, user: User.first})
+  end
+end
+
+

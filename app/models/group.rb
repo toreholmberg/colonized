@@ -1,4 +1,4 @@
 class Group < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :status, :title
+  attr_accessible :status, :title, :user
 end
