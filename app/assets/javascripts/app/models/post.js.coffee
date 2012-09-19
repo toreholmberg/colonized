@@ -6,12 +6,13 @@ class App.Post extends Spine.Model
 
   @load: (id) ->
     @url = "/groups/#{id}/posts"
+    @page = 0
     @deleteAll()
     @fetch()
 
   @fetch: (params) ->
     params or= 
       data:
-        index: @last()?.id or 0
+        page: @page++
       processData: true
     super(params)

@@ -16,8 +16,13 @@ end
 
 5.times do |i|
   group = Group.create({title: "Group #{i}", user: User.first(:order => "RAND()")})
+
+  time = Time.new - (100 * 10000)
   100.times do |j|
-    Post.create({content: Forgery(:lorem_ipsum).words(rand(10...75)), group: group, user: User.first(:order => "RAND()")})
+    p = Post.create({content: Forgery(:lorem_ipsum).words(rand(10...75)), group: group, user: User.first(:order => "RAND()")})
+    p.created_at = time
+    p.save
+    time = time + 10000
   end
 end
 

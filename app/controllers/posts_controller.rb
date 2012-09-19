@@ -2,7 +2,9 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.where("group_id = :group_id AND id > :index", {:group_id => params[:group_id], :index => params[:index]}).limit(5)
+    limit = 10
+    offset = limit * params[:page].to_i
+    @posts = Post.where("group_id = :group_id", {:group_id => params[:group_id]}).order('created_at DESC').offset(offset).limit(limit)
 
     respond_to do |format|
       format.html # index.html.erb

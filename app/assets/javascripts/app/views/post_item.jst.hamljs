@@ -1,6 +1,7 @@
 .post{ data-id: id }
   .body= content
-  .meta
+  .meta 
+    .created
+      %strong= created_at
     .user= user().name
-    .created= created_at
     .id= id
