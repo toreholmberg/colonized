@@ -1,4 +1,3 @@
-$ = jQuery.sub()
 Group = App.Group
 
 class App.Sidebar extends Spine.Controller

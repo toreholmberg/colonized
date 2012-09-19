@@ -1,23 +1,16 @@
-$ = jQuery.sub()
 Group = App.Group
-Post = App.Post
 
 class App.Groups extends Spine.Controller
-  className: 'groups'
-
-  events:
-    'click button.more': 'moreClickHandler'
+  className: 'group'
 
   constructor: ->
     super
-    Post.bind 'refresh change', @render
+
+    @meta = new App.GroupMeta
+    @posts = new App.Posts
+    @loadMore = new App.GroupLoadMore
+    @append @meta, @posts, @loadMore
 
   load: (id) =>
-    @item = Group.find id
-    @render()
-
-  render: =>
-    @html @view('group')(@item)
-
-  moreClickHandler: ->
-    Post.fetch()
+    @meta.render Group.find(id)
+    @posts.clear()

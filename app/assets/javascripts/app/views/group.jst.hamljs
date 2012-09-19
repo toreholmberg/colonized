@@ -1,9 +1,0 @@
-%h1= title
-%h2 created by #{user().name} at #{created_at}
-
-%div
-  :each post in posts().all()
-    %p= post.content
-    %b #{post.id} by #{post.user().name} at #{post.created_at}
-
-%button.more Load more
