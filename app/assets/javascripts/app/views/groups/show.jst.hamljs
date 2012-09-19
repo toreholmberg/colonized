@@ -1,1 +1,5 @@
 %h1= title
+%h2 created by #{user().name} at #{created_at}
+
+:each post in posts().all()
+  %p= post.content

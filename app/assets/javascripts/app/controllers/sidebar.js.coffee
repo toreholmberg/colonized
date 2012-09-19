@@ -11,7 +11,6 @@ class App.Sidebar extends Spine.Controller
   constructor: ->
     super
     Group.bind 'refresh change', @render
-    Group.fetch()
     @render()
 
   render: =>

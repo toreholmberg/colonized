@@ -4,6 +4,7 @@
 #= require spine/manager
 #= require spine/ajax
 #= require spine/route
+#= require spine/relation
 
 #= require_tree ./lib
 #= require_self
@@ -15,11 +16,12 @@ class App extends Spine.Controller
   constructor: ->
     super
 
-    App.User.fetch()
-
     @sidebar = new App.Sidebar
     @main = new App.Main
     @append @sidebar, @main
+
+    App.User.fetch()
+    App.Group.fetch()
 
     Spine.Route.setup()
 
