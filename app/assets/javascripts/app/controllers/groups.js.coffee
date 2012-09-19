@@ -10,7 +10,6 @@ class App.Groups extends Spine.Controller
 
   constructor: ->
     super
-
     Post.bind 'refresh change', @render
 
   load: (id) =>

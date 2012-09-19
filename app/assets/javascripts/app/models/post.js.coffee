@@ -4,7 +4,10 @@ class App.Post extends Spine.Model
   @belongsTo 'user', 'App.User'
   @extend Spine.Model.Ajax
 
-  @currentGroupId = null
+  @load: (id) ->
+    @currentGroupId = id
+    @deleteAll()
+    @fetch()
 
   @url: ->
     "/groups/#{@currentGroupId}/posts"

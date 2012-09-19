@@ -4,6 +4,6 @@
 %div
   :each post in posts().all()
     %p= post.content
-    %b by #{post.user().name} at #{post.created_at}
+    %b #{post.id} by #{post.user().name} at #{post.created_at}
 
 %button.more Load more

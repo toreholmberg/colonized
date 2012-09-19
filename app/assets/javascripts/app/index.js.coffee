@@ -21,7 +21,7 @@ class App extends Spine.Controller
     @prepend @sidebar, @groups
 
     @routes
-      "/:id": (params) -> @loadGroup(params.id)
+      "/:id": (params) -> @load params.id
 
     App.Group.one 'refresh change', @ready
     App.User.fetch()
@@ -30,10 +30,8 @@ class App extends Spine.Controller
   ready: =>
     Spine.Route.setup()
 
-  loadGroup: (id) =>
+  load: (id) =>
     @groups.load id
-    App.Post.currentGroupId = id
-    App.Post.deleteAll()
-    App.Post.fetch()
+    App.Post.load id
 
 window.App = App
