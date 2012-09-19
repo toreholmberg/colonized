@@ -5,12 +5,9 @@ class App.Post extends Spine.Model
   @extend Spine.Model.Ajax
 
   @load: (id) ->
-    @currentGroupId = id
+    @url = "/groups/#{id}/posts"
     @deleteAll()
     @fetch()
-
-  @url: ->
-    "/groups/#{@currentGroupId}/posts"
 
   @fetch: (params) ->
     params or= 
