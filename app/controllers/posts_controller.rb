@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.where("group_id = ?", params[:group_id])
+    @posts = Post.where("group_id = :group_id AND id > :index", {:group_id => params[:group_id], :index => params[:index]}).limit(5)
 
     respond_to do |format|
       format.html # index.html.erb

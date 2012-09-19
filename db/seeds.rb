@@ -10,12 +10,14 @@ User.delete_all
 Group.delete_all
 Post.delete_all
 
-User.create({name: "Torino", email: 'test@test.com'})
-
 10.times do |i|
-  group = Group.create({title: "Group #{i}", user: User.first})
+  User.create({name: Forgery::Name.full_name, email: Forgery::Internet.email_address})
+end
+
+5.times do |i|
+  group = Group.create({title: "Group #{i}", user: User.first(:order => "RAND()")})
   100.times do |j|
-    Post.create({content: "Lorem ipsum dolor sit amet. #{i}-#{j}", group: group, user: User.first})
+    Post.create({content: Forgery(:lorem_ipsum).words(rand(10...75)), group: group, user: User.first(:order => "RAND()")})
   end
 end
 

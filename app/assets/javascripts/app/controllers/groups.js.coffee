@@ -4,6 +4,9 @@ Group = App.Group
 class App.Groups extends Spine.Controller
   className: 'groups'
 
+  events:
+    'click button.more': 'moreClickHandler'
+
   constructor: ->
     super
 
@@ -22,3 +25,6 @@ class App.Groups extends Spine.Controller
 
   render: =>
     @html @view('groups/show')(@item)
+
+  moreClickHandler: ->
+    App.Post.fetch()
