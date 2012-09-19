@@ -6,9 +6,3 @@ class App.Posts extends Spine.Controller
 
   constructor: ->
     super
-    Post.bind 'refresh change', @render
-    Post.fetch()
-    
-  render: =>
-    posts = Post.all()
-    @html @view('posts/index')(posts: posts)

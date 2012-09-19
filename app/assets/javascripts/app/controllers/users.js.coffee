@@ -6,9 +6,3 @@ class App.Users extends Spine.Controller
 
   constructor: ->
     super
-    User.bind 'refresh change', @render
-    User.fetch()
-    
-  render: =>
-    users = User.all()
-    @html @view('users/index')(users: users)

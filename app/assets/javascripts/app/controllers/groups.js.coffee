@@ -1,5 +1,6 @@
 $ = jQuery.sub()
 Group = App.Group
+Post = App.Post
 
 class App.Groups extends Spine.Controller
   className: 'groups'
@@ -10,7 +11,7 @@ class App.Groups extends Spine.Controller
   constructor: ->
     super
 
-    App.Post.bind 'refresh change', @render
+    Post.bind 'refresh change', @render
 
     @routes
       "/:id": (params) =>
@@ -20,11 +21,11 @@ class App.Groups extends Spine.Controller
         @load()
 
   load: =>
-    App.Post.deleteAll()
-    App.Post.fetch()
+    Post.deleteAll()
+    Post.fetch()
 
   render: =>
-    @html @view('groups/show')(@item)
+    @html @view('group')(@item)
 
   moreClickHandler: ->
-    App.Post.fetch()
+    Post.fetch()
