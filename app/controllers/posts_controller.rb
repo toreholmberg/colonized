@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.where("group_id = ?", params[:group_id])
 
     respond_to do |format|
       format.html # index.html.erb

@@ -18,12 +18,13 @@ class App extends Spine.Controller
 
     @sidebar = new App.Sidebar
     @main = new App.Main
-    @append @sidebar, @main
+    @prepend @sidebar, @main
 
+    App.Group.one 'refresh change', @ready
     App.User.fetch()
     App.Group.fetch()
 
+  ready: =>
     Spine.Route.setup()
 
 window.App = App
-

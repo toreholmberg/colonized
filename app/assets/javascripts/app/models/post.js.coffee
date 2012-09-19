@@ -3,3 +3,6 @@ class App.Post extends Spine.Model
   @belongsTo 'group', 'App.Group'
   @belongsTo 'user', 'App.User'
   @extend Spine.Model.Ajax
+
+  @url: ->
+    "/groups/#{App.CLNZD.currentGroupId}/posts"

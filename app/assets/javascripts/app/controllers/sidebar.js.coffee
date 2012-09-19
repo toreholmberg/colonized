@@ -21,4 +21,4 @@ class App.Sidebar extends Spine.Controller
     @navigate '/'
 
   groupClickHandler: (e) ->
-    @navigate '/group', $(e.target).data 'id'
+    @navigate '', $(e.target).data 'id'

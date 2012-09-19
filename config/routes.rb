@@ -1,7 +1,9 @@
 Colonized::Application.routes.draw do
   resources :posts
 
-  resources :groups
+  resources :groups do
+    resources :posts
+  end
 
   resources :users
 
