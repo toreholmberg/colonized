@@ -4,8 +4,10 @@ class App.Post extends Spine.Model
   @belongsTo 'user', 'App.User'
   @extend Spine.Model.Ajax
 
+  @currentGroupId = null
+
   @url: ->
-    "/groups/#{App.CLNZD.currentGroupId}/posts"
+    "/groups/#{@currentGroupId}/posts"
 
   @fetch: (params) ->
     params or= 

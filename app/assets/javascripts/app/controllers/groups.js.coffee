@@ -13,16 +13,9 @@ class App.Groups extends Spine.Controller
 
     Post.bind 'refresh change', @render
 
-    @routes
-      "/:id": (params) =>
-        App.CLNZD.currentGroupId = params.id
-        @item = Group.find params.id
-        @render()
-        @load()
-
-  load: =>
-    Post.deleteAll()
-    Post.fetch()
+  load: (id) =>
+    @item = Group.find id
+    @render()
 
   render: =>
     @html @view('group')(@item)
