@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
-    @post.group = Group.first
+    @post.group = Group.find(params[:group_id])
     @post.user = User.first
 
     respond_to do |format|

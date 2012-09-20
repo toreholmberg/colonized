@@ -2,7 +2,9 @@ $ = jQuery.sub()
 
 class App.PostItem extends Spine.Controller
 
-  # events:
+  events:
+    'click button.edit': 'clickEdit'
+    'click button.remove': 'clickRemove'
 
   constructor: ->
     super
@@ -16,3 +18,10 @@ class App.PostItem extends Spine.Controller
 
   remove: =>
     $(@el).remove()
+
+  clickEdit: (e) =>
+    value = prompt "Edit message:", @item.content
+    @item.updateAttribute("content", value)
+
+  clickRemove: (e) =>
+    @item.destroy() if confirm "You sure?"

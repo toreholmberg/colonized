@@ -1,3 +1,4 @@
 %ul.groups
   :each group in groups
     %li.item{ data-id: group.id }= group.title
+%hr
