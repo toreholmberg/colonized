@@ -13,7 +13,6 @@ class App.Posts extends Spine.Controller
       post = new App.PostItem(item: item)
       @append post.render()
 
-  addAll: =>
-    Post.eachSortedBy @addOne, 'created_at', true
+  addAll: => Post.eachSortedBy @addOne, 'created_at', true
 
   clear: -> @el.empty()

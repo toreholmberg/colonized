@@ -17,12 +17,13 @@ class App.Post extends Spine.Model
       processData: true
     super(params)
 
-  @allSortedBy: (key, reverse) ->
+  @allSortedBy: (keys, reverse) ->
     all = @all()
-    _(all).sortBy (p) -> [key]
+    _(all).sortBy (p) -> keys
     all.reverse() if reverse
+    all
 
-  @eachSortedBy: (callback, key, reverse) ->
-    all = @allSortedBy(key, reverse)
+  @eachSortedBy: (callback, keys, reverse) ->
+    all = @allSortedBy(keys, reverse)
     for key, value of all
       callback(value.clone())
