@@ -21,7 +21,7 @@ class App.PostItem extends Spine.Controller
 
   clickEdit: (e) =>
     value = prompt "Edit message:", @item.content
-    @item.updateAttribute("content", value)
+    @item.updateAttribute("content", value) if value
 
   clickRemove: (e) =>
     @item.destroy() if confirm "You sure?"
