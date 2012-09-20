@@ -1,5 +1,6 @@
 #= require json2
 #= require jquery
+#= require underscore-min
 #= require spine
 #= require spine/manager
 #= require spine/ajax

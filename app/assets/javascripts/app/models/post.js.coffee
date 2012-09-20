@@ -16,3 +16,13 @@ class App.Post extends Spine.Model
         page: @page++
       processData: true
     super(params)
+
+  @allSortedBy: (key, reverse) ->
+    all = @all()
+    _(all).sortBy (p) -> [key]
+    all.reverse() if reverse
+
+  @eachSortedBy: (callback, key, reverse) ->
+    all = @allSortedBy(key, reverse)
+    for key, value of all
+      callback(value.clone())
