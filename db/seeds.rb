@@ -6,16 +6,20 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.delete_all
-Group.delete_all
-Post.delete_all
+ActiveRecord::Base.establish_connection
+ActiveRecord::Base.connection.tables.each do |table|
+  next if table == 'schema_migrations'
+  ActiveRecord::Base.connection.execute("TRUNCATE #{table}")
+end
+
+User.create!({name:  "torino", email: "torinobalonka@gmail.com", password: "111111", password_confirmation: "111111", remember_me: true})
 
 10.times do |i|
-  User.create({name: Forgery::Name.full_name, email: Forgery::Internet.email_address})
+  User.create!({name: Forgery::Name.full_name, email: Forgery::Internet.email_address, password: "111111", password_confirmation: "111111", remember_me: true})
 end
 
 5.times do |i|
-  group = Group.create({title: "Group #{i}", user: User.first(:order => "RAND()")})
+  group = Group.create({title: "Group #{i}", user: User.first()})
 
   time = Time.new - (100 * 10000)
   100.times do |j|
@@ -25,5 +29,3 @@ end
     time = time + 10000
   end
 end
-
-
