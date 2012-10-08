@@ -17,6 +17,9 @@ class App extends Spine.Controller
   constructor: ->
     super
 
+    App.Session.bind 'change', @sessionChange
+    App.Session.checkSession()
+
     @sidebar = new App.Sidebar
     @groups = new App.Groups
     @prepend @sidebar, @groups
@@ -34,5 +37,14 @@ class App extends Spine.Controller
   load: (id) =>
     @groups.load id
     App.Post.load id
+
+  sessionChange: (data) =>
+    # XXX: make nice
+    if data == App.Session.SESSION_FAILURE
+      email = prompt "Email:"
+      password = prompt "Password:"
+      App.Session.login email, password
+    else
+      alert "Session created"
 
 window.App = App
