@@ -28,8 +28,6 @@ class App extends Spine.Controller
       "/:id": (params) -> @load params.id
 
     App.Group.one 'refresh change', @ready
-    App.User.fetch()
-    App.Group.fetch()
 
   ready: =>
     Spine.Route.setup()
@@ -45,6 +43,8 @@ class App extends Spine.Controller
       password = prompt "Password:"
       App.Session.login email, password
     else
-      alert "Session created"
+      console.log "Session ok, should be fine to get data.."
+      App.User.fetch()
+      App.Group.fetch()
 
 window.App = App
