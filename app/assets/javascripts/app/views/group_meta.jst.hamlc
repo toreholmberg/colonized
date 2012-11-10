@@ -1,0 +1,4 @@
+%h1= @title
+%p created by #{@user().name} at #{@created_at}
+%button.new New post
+%hr

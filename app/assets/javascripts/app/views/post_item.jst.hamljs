@@ -1,9 +1,0 @@
-.post{ data-id: id }
-  .created
-     %strong= created_at
-  .body= content
-  .meta #{id} | #{user().name}
-  .action
-    %button.edit Edit
-    %button.remove Remove
-%hr

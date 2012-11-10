@@ -12,8 +12,8 @@
 
 #= require jquery
 #= require jquery_ujs
-#= require underscore-min
+#= require hamlcoffee
 #= require app
 #= require_tree .
 
-$ -> new App({el: $('body')})
+$ -> new App({el: $('#app')})

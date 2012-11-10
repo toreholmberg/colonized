@@ -9,7 +9,8 @@ class App.GroupMeta extends Spine.Controller
   constructor: ->
     super
 
-  render: (item) => @html @view('group_meta')(item)
+  render: (@item) => 
+    @html @view('group_meta')(@item)
 
   click: (e) =>
     value = prompt "Enter message:"
