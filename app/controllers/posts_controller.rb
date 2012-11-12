@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.group = Group.find(params[:group_id])
-    @post.user = User.first
+    @post.user = User.find(params[:user_id])
 
     respond_to do |format|
       if @post.save

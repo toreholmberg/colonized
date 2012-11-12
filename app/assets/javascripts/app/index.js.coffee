@@ -17,34 +17,40 @@ class App extends Spine.Controller
   constructor: ->
     super
 
+    @routes
+      '/:id': (params) -> 
+        @group params.id
+
     App.Session.bind 'change', @sessionChange
     App.Session.checkSession()
 
-    @sidebar = new App.Sidebar
-    @groups = new App.Groups
-    @prepend @sidebar, @groups
-
-    @routes
-      "/:id": (params) -> @load params.id
-
+  start: =>
     App.Group.one 'refresh change', @ready
+    App.User.fetch()
+    App.Group.fetch()
 
   ready: =>
     Spine.Route.setup()
 
-  load: (id) =>
-    @groups.load id
-    App.Post.load id
+  login: =>
+    @main.release() if @main
+    @session = new App.Session unless @session
+    @append @session
+
+  group: (id) =>
+    unless App.Group.exists id
+      @navigate '', App.Group.first().id
+    else
+      @session.release() if @session
+      @main = new App.Main unless @main
+      @append @main
+      @main.load id
 
   sessionChange: (data) =>
-    # XXX: make nice
+    console.log "sessionChange", data
     if data == App.Session.SESSION_FAILURE
-      email = prompt "Email:"
-      password = prompt "Password:"
-      App.Session.login email, password
+      @login()
     else
-      console.log "Session ok, should be fine to get data.."
-      App.User.fetch()
-      App.Group.fetch()
+      @start()
 
 window.App = App

@@ -30,9 +30,31 @@ class App.Session extends Spine.Controller
 
   @sessionSuccess: (data, status, xhr) =>
     @trigger 'change', if data.error then @SESSION_FAILURE else @SESSION_SUCCESS
+    App.User.currentUserId = data.user.id unless data.error
 
   @loginSuccess: (data, status, xhr) =>
     @trigger 'change', @SESSION_SUCCESS
 
   @ajaxError: (xhr, statusText, error) =>
     console.log "Error: #{statusText} #{error}"
+
+  className: 'session'
+
+  elements:
+    '#email': 'email'
+    '#password': 'password'
+
+  events:
+    'submit form': 'submit'
+
+  constructor: ->
+    super
+    @render()
+
+  render: =>
+    @html @view('login')()
+
+  submit: (e) =>
+    e.stopPropagation()
+    e.preventDefault()
+    App.Session.login @email.val(), @password.val()

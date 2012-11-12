@@ -14,6 +14,5 @@ class App.GroupMeta extends Spine.Controller
 
   click: (e) =>
     value = prompt "Enter message:"
-    
-    post = new Post(content: value)
+    post = new Post(content: value, user: App.User.currentUser())
     post.save()
