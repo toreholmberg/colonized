@@ -6,6 +6,7 @@ class App.Sidebar extends Spine.Controller
 
   events:
     'click ul.groups li': 'groupClickHandler'
+    'click button.sign-out': 'signOutClickHandler'
 
   constructor: ->
     super
@@ -16,8 +17,8 @@ class App.Sidebar extends Spine.Controller
     groups = Group.all()
     @html @view('sidebar')(groups: groups)
 
-  homeClickHandler: ->
-    @navigate '/'
+  signOutClickHandler: (e) =>
+    App.Session.logout()
 
-  groupClickHandler: (e) ->
+  groupClickHandler: (e) =>
     @navigate '', $(e.target).data 'id'

@@ -1,6 +1,7 @@
 $ = jQuery.sub()
 
 class App.PostItem extends Spine.Controller
+  className: 'post'
 
   events:
     'click button.edit': 'clickEdit'

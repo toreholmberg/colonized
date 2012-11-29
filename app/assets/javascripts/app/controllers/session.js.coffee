@@ -18,15 +18,35 @@ class App.Session extends Spine.Controller
       401: => @trigger 'change', @SESSION_FAILURE
 
   @checkSession: =>
-    $.ajax($.extend({success: @sessionSuccess}, @ajaxProperties, {url: "/current_user"}))
+
+    opts = $.extend {}, @ajaxProperties,
+      success: @sessionSuccess
+      url: "/current_user"
+
+    $.ajax opts
 
   @login: (email, password) =>
-    data = 
-      user: 
+    
+    data =
+      user:
         email: email
         password: password
 
-    $.ajax($.extend({success: @loginSuccess}, @ajaxProperties, {url: "/users/sign_in", data: JSON.stringify(data)}))
+    opts = $.extend {}, @ajaxProperties,
+      success: @loginSuccess
+      url: "/users/sign_in"
+      data: JSON.stringify data
+
+    $.ajax opts
+
+  @logout: =>
+
+    opts = $.extend {}, @ajaxProperties,
+      complete: @logoutComplete
+      type: "DELETE"
+      url: "/users/sign_out"
+
+    $.ajax opts
 
   @sessionSuccess: (data, status, xhr) =>
     @trigger 'change', if data.error then @SESSION_FAILURE else @SESSION_SUCCESS
@@ -34,6 +54,9 @@ class App.Session extends Spine.Controller
 
   @loginSuccess: (data, status, xhr) =>
     @trigger 'change', @SESSION_SUCCESS
+
+  @logoutComplete: (jqXHR, textStatus) =>
+    @trigger 'change', @SESSION_FAILURE
 
   @ajaxError: (xhr, statusText, error) =>
     console.log "Error: #{statusText} #{error}"

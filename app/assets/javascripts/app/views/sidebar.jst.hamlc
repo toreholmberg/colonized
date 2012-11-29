@@ -1,4 +1,5 @@
 %ul.groups
   - for group in @groups
     %li.item{ :'data-id' => group.id }= group.title
+%button.sign-out Sign out
 %hr
